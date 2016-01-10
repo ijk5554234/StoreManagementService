@@ -8,6 +8,7 @@ class Store(Document):
     password = StringField()
     storeName = StringField()
     balance = DecimalField()
+    items = ListField(ReferenceField("Item"))
 
     def __unicode__(self):
         return self.username
@@ -17,7 +18,6 @@ class Store(Document):
 
 
 class Item(Document):
-    storeId = StringField()
     category = StringField(max_length=50)
     name = StringField(max_length=50)
     cost = DecimalField()

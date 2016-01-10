@@ -9,7 +9,7 @@ from storeManagementService.StoreDAO import *
 def login(request):
     if not request.POST:
         return render(request, "login.html")
-    ctx ={}
+    ctx = {}
     ctx.update(csrf(request))
     username = request.POST["username"]
     password = request.POST["password"]
@@ -27,26 +27,27 @@ def index(request):
     request.session
     if 'username' not in request.session:
         return HttpResponseRedirect("/login/")
-    items = []
+
     connect('StoreManagement')
-    for item in Item.objects:
-        items.append(item)
-    return render(request, 'index.html', {"items": items, "storeName": request.session["storeName"]},)
+    store = get_store_by_id(request.session["storeId"])
+    items = store.items
+    # for item in Item.objects:
+    #     items.append(item)
+    return render(request, 'index.html', {"items": items, "storeName": request.session["storeName"]}, )
 
 
 def create_new_item(request):
     if not request.POST:
         return render(request, "index.html")
-    ctx ={}
+    ctx = {}
     ctx.update(csrf(request))
     name = request.POST["name"]
     category = request.POST["category"]
     cost = request.POST["cost"]
     price = request.POST["price"]
     desc = request.POST["description"]
-    createItem(name, category, cost, price, desc,)
-
-
-
+    item = create_item(name, category, cost, price, desc)
+    store = get_store_by_id(request.session["storeId"])
+    add_item(item, store)
     return HttpResponseRedirect("/")
 
