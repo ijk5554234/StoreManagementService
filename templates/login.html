@@ -1,0 +1,15 @@
+<html>
+<head>
+</head>
+<body>
+<p>{{msg}}<p>
+<form action="/login/" method="post">
+  {% csrf_token %}
+  Username:<input type="text" name="username"><br/>
+  Password:<input type="password" name="password"><br/>
+  <input type="submit" value="login">
+</form>
+
+<p>{{ rlt }}</p>
+</body>
+</html>
