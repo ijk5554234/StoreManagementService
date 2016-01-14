@@ -1,11 +1,10 @@
-from pymongo import MongoClient
 from models import *
 
 DATABASE = "StoreManagement"
 ADDRESS = "localhost"
 
 
-def createStore(username, password, balance):
+def create_store(username, password, balance):
     connect(DATABASE)
     store = Store()
     store.username = username
@@ -15,7 +14,7 @@ def createStore(username, password, balance):
     store.save()
 
 
-def getStore(u, p):
+def get_store(u, p):
     connect(DATABASE)
     query_result = Store.objects(username=u, password=p)
     if len(query_result) == 0:

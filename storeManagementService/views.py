@@ -13,7 +13,7 @@ def login(request):
     ctx.update(csrf(request))
     username = request.POST["username"]
     password = request.POST["password"]
-    store = getStore(username, password)
+    store = get_store(username, password)
     if not store:
         msg = "Username/password combination is not found!"
         render(request, "login.html", msg)
