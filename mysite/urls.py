@@ -19,12 +19,14 @@ from django.contrib import admin
 from mysite import settings
 
 urlpatterns = patterns('',
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', 'storeManagementService.views.index'),
-    url(r'^storeManagementService/', include('storeManagementService.urls')),
-    url(r'^login/', 'storeManagementService.views.login'),
+                       url(r'^admin/', admin.site.urls),
+                       url(r'^$', 'storeManagementService.views.login'),
+                       url(r'^storeManagementService/', include('storeManagementService.urls')),
+                       url(r'^index/', 'storeManagementService.views.index'),
+                       url(r'^login/', 'storeManagementService.views.login'),
+                       url(r'^register/', 'storeManagementService.views.register'),
 
 
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-     {'document_root': settings.STATICFILES_DIRS, 'show_indexes': True}),
-)
+                       (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+                        {'document_root': settings.STATICFILES_DIRS, 'show_indexes': True}),
+                       )

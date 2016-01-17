@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+<p>{{msg}}
+
+<p>
+
+<form action="/register/" method="post">
+    {% csrf_token %}
+    Username:<input type="text" name="username"><br/>
+    Password:<input type="password" name="password"><br/>
+    Re-password: <input type="password" name="re_password"><br/>
+    Store Name:<input type="text" name="store_name"><br/>
+    <input type="submit" value="register">
+</form>
+
+<p>{{ rlt }}</p>
+</body>
+</html>
